@@ -30,8 +30,8 @@ function getComputerChoice() {
 
 function getHumanChoice() {
     // For now, assuming the user always enter a valid choice
-    // Use prompt method
-    // Return user input
+    // Return user input collected using prompt method
+    return prompt("Let's play \"rock,\" \"paper,\" \"scissors\"...SHOOT!");
 }
 
 // Play a single round, update score, and announce round winner
@@ -61,5 +61,6 @@ function playGame() {
 }
 
 
-
-getComputerChoice();
+// For testing during divide and conquer phase
+// getComputerChoice();
+console.log(getHumanChoice());
