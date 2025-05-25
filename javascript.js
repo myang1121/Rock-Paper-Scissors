@@ -35,20 +35,32 @@ function getHumanChoice() {
 }
 
 // Play a single round, update score, and announce round winner
+
 function playRound(humanChoice, computerChoice) {
-    // If user inputs "rock" (case-insensitive)
-    // Return rock
+   // humanChoice case-insensitive
+   humanChoice = (humanChoice.slice(0, 1)).toUpperCase() + (humanChoice.slice(1)).toLowerCase();
+   console.log(`Computer chose ${computerChoice}`);
+   console.log(`You chose ${humanChoice}`);
+   
+   // If tie
+   if ((computerChoice === "Rock" && humanChoice === "Rock") || (computerChoice === "Paper" && humanChoice === "Paper") || (computerChoice === "Scissors" && humanChoice === "Scissors")) {
+        // Score does not increment, announce tie
+        return `No one wins! ${computerChoice} and ${humanChoice} tie!`;
 
-    // If the user inputs "paper" (case-insensitive)
-    // Return paper
+    // If human wins
+   } else if ((computerChoice === "Rock" && humanChoice === "Paper") || (computerChoice === "Scissors" && humanChoice === "Rock") || (computerChoice === "Paper" && humanChoice === "Scissors")) {
+        // Increment score for human
+        humanScore += 1;
+        // Announce human as round winner
+        return `You win! ${humanChoice} beats ${computerChoice}`;
 
-    // If the user inputs "scissors" (case-insensitive)
-    // Return scissors
-
-    // Announce round winner
-
-    // Base on round winner, increment score for human or computer
-
+    // If computer wins (else)
+   } else {
+        // Increment score for computer
+        computerScore += 1;
+        // Announce computer as round winner
+        return `You lost! ${computerChoice} beats ${humanChoice}`;
+   }
 }
 
 // Play an entire game (5 rounds), keep track of scores, and declares winner at end
@@ -63,4 +75,5 @@ function playGame() {
 
 // For testing during divide and conquer phase
 // getComputerChoice();
-console.log(getHumanChoice());
+// console.log(getHumanChoice());
+// console.log(playRound(getHumanChoice(), getComputerChoice()));
