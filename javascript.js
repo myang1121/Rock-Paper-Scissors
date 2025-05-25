@@ -65,11 +65,27 @@ function playRound(humanChoice, computerChoice) {
 
 // Play an entire game (5 rounds), keep track of scores, and declares winner at end
 function playGame() {
-    // Loop 5 times for 5 rounds
-    // Call play rounds
+    // Play 5 rounds
+    for (let i = 0; i < 5; i ++) {
+        // Play individual rounds, each round updates score
+        console.log(playRound(getHumanChoice(), getComputerChoice()));
+    }
 
     // Announce final winner at the end of the 5th round
+    // If score of computer is higher than score of human
+    if (computerScore > humanScore) {
+        // Computer wins
+        return `With a score of ${humanScore}:${computerScore}, you lost!`;
+    // If score of human is higher than score of computer (else)
+    } else if (humanScore > computerScore) {
+        // Human wins
+        return `With a score of ${humanScore}:${computerScore}, you won!`;
 
+    // If score of human and computer is the same (else)
+    } else {
+        // Tie
+        return `With a score of ${humanScore}:${computerScore}, there is a tied!`;
+    }
 }
 
 
@@ -77,3 +93,4 @@ function playGame() {
 // getComputerChoice();
 // console.log(getHumanChoice());
 // console.log(playRound(getHumanChoice(), getComputerChoice()));
+console.log(playGame());
