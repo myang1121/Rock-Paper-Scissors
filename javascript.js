@@ -1,4 +1,4 @@
-console.log("Hello World");
+// console.log("Hello World");
 
 // In the flobal scope, keep track of players score
 let humanScore = 0;
@@ -6,14 +6,26 @@ let computerScore = 0;
 
 function getComputerChoice() {
     // Generate random values from 0 to 1 (exclusive)
+    let value = Math.random();
+    // console.log(value);
     // If the value is less than 1/3
-    // Return rock
+    if (value < 1/3) {
+        // Return rock
+        // console.log("Rock");
+        return "Rock";
 
     // If the value is greater than 1/3 but less than 2/3
-    // Return paper
+    } else if ((value >= 1/3) && (value < 2/3)) {
+        // Return paper
+        // console.log("Paper");
+        return "Paper";
 
     // If the value is greater than 2/3 (else)
-    // Return scissors
+    } else {
+        // Return scissors
+        // console.log("Scissors");
+        return "Scissors";
+    }
 }
 
 function getHumanChoice() {
@@ -48,3 +60,6 @@ function playGame() {
 
 }
 
+
+
+getComputerChoice();
