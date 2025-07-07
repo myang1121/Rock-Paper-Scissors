@@ -65,11 +65,7 @@ function playRound(humanChoice, computerChoice) {
 
 // Play an entire game (5 rounds), keep track of scores, and declares winner at end
 function playGame() {
-    // Play 5 rounds
-    for (let i = 0; i < 5; i ++) {
-        // Play individual rounds, each round updates score
-        console.log(playRound(getHumanChoice(), getComputerChoice()));
-    }
+    
 
     // Announce final winner at the end of the 5th round
     // If score of computer is higher than score of human
