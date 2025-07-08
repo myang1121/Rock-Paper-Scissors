@@ -39,32 +39,34 @@ function getHumanChoice() {
 function playRound(humanChoice, computerChoice) {
    // humanChoice case-insensitive
    humanChoice = (humanChoice.slice(0, 1)).toUpperCase() + (humanChoice.slice(1)).toLowerCase();
-   console.log(`Computer chose ${computerChoice}`);
-   console.log(`You chose ${humanChoice}`);
+   console.log(`Computer threw ${computerChoice}`);
+   console.log(`You threw ${humanChoice}`);
    
    // If tie
    if ((computerChoice === "Rock" && humanChoice === "Rock") || (computerChoice === "Paper" && humanChoice === "Paper") || (computerChoice === "Scissors" && humanChoice === "Scissors")) {
         // Score does not increment, announce tie
-        return `No one wins! ${computerChoice} and ${humanChoice} tie!`;
+        return `Computer threw ${computerChoice}, you threw ${humanChoice}.<br>No one wins! ${computerChoice} and ${humanChoice} tie!`;
 
     // If human wins
    } else if ((computerChoice === "Rock" && humanChoice === "Paper") || (computerChoice === "Scissors" && humanChoice === "Rock") || (computerChoice === "Paper" && humanChoice === "Scissors")) {
         // Increment score for human
         humanScore += 1;
         // Announce human as round winner
-        return `You win! ${humanChoice} beats ${computerChoice}`;
+        return `Computer threw ${computerChoice}, you threw ${humanChoice}.<br>You win! ${humanChoice} beats ${computerChoice}`;
 
     // If computer wins (else)
    } else {
         // Increment score for computer
         computerScore += 1;
         // Announce computer as round winner
-        return `You lost! ${computerChoice} beats ${humanChoice}`;
+        return `Computer threw ${computerChoice}, you threw ${humanChoice}.<br>You lost! ${computerChoice} beats ${humanChoice}`;
    }
 }
 
 // Play an entire game (5 rounds), keep track of scores, and declares winner at end
 function playGame() {
+    
+
     
 
     // Announce final winner at the end of the 5th round
@@ -89,4 +91,102 @@ function playGame() {
 // getComputerChoice();
 // console.log(getHumanChoice());
 // console.log(playRound(getHumanChoice(), getComputerChoice()));
-console.log(playGame());
+// console.log(playGame());
+
+const parent = document.querySelector("body");
+const rock = document.createElement("button");
+const paper = document.createElement("button");
+const scissors = document.createElement("button");
+rock.textContent = "Rock";
+paper.textContent = "Paper";
+scissors.textContent = "Scissors";
+
+parent.appendChild(rock);
+parent.appendChild(paper);
+parent.appendChild(scissors);
+
+let winner = document.createElement("p");
+let finalWinner = document.createElement("p");
+let round = 0;
+// const fiveRounds = new CustomEvent("fiveRounds");
+rock.addEventListener("click", () => {
+    winner.innerHTML = playRound("Rock", getComputerChoice());    
+    parent.appendChild(winner);
+    round ++;
+    if (round === 5) {
+        finalWinner.textContent = playGame();
+        parent.appendChild(finalWinner);
+        reset();
+        //round = 0;
+        
+        // document.dispatchEvent(fiveRounds);
+        // document.addEventListener("fiveRounds", () => {
+        //     finalWinner.textContent = playGame();
+        //     parent.appendChild(finalWinner);
+        // });
+    }
+    // if (round === 6) {
+    //     round = 1;
+    //     parent.removeChild(finalWinner);
+    // }
+    
+});
+paper.addEventListener("click", () => {
+    winner.innerHTML = playRound("Paper", getComputerChoice());
+    parent.appendChild(winner);
+    round ++;
+    if (round === 5) {
+        finalWinner.textContent = playGame();
+        parent.appendChild(finalWinner);
+        reset();
+        //round = 0;
+        
+        // document.dispatchEvent(fiveRounds);
+        // document.addEventListener("fiveRounds", () => {
+        //     finalWinner.textContent = playGame();
+        //     parent.appendChild(finalWinner);
+        // });
+    }
+    // if (round === 6) {
+    //     round = 1;
+    //     parent.removeChild(finalWinner);
+    // }
+});
+scissors.addEventListener("click", () => {
+    winner.innerHTML = playRound("Scissors", getComputerChoice());
+    parent.appendChild(winner);
+    round ++;
+    if (round === 5) {
+        finalWinner.textContent = playGame();
+        parent.appendChild(finalWinner);
+        reset();
+        //round = 0;
+        
+        // document.dispatchEvent(fiveRounds);
+        // document.addEventListener("fiveRounds", () => {
+        //     finalWinner.textContent = playGame();
+        //     parent.appendChild(finalWinner);
+        // });
+    }
+    // if (round === 6) {
+    //     round = 1;
+    //     parent.removeChild(finalWinner);
+    // }
+});
+
+// fiveRounds.addEventListener("fiveRounds", () => {
+//     playGame();
+// });
+
+function reset () {
+    round = 0;
+    humanScore = 0;
+    computerScore = 0;
+    parent.removeChild(winner);
+    parent.removeChild(finalWinner);
+};
+
+
+
+
+
